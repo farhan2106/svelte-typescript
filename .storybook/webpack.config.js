@@ -1,4 +1,6 @@
-const path = require('path');
+const fs = require('fs')
+const ts = require('typescript')
+const tsConfig = require('./../tsconfig.json')
 module.exports = ({ config, mode }) => {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
