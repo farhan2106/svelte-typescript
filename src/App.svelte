@@ -9,12 +9,4 @@ h1 {
 }
 </style>
 
-<script>
-import WelcomePage from './components/WelcomePage/WelcomePage.svelte'
-
-export default {
-  components: {
-    WelcomePage
-  }
-}
-</script>
+<script src="App.ts"></script>

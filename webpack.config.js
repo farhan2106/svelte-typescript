@@ -1,3 +1,4 @@
+const fs = require('fs')
 const ts = require('typescript')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -32,7 +33,16 @@ module.exports = {
             hotReload: true,
             preprocess: {
               script: ({ content, attributes, filename }) => {
-                const transpiled = ts.transpileModule(content, tsConfig)
+                let transpiled
+                if (attributes.src) {
+                  const filePath = [ 
+                    ...filename.split('/').slice(0, (filename.match(/\//g) || []).length),
+                    attributes.src
+                  ].join('/')
+                  transpiled = ts.transpileModule(fs.readFileSync(filePath).toString(), tsConfig)
+                } else {
+                  transpiled = ts.transpileModule(content, tsConfig)
+                }
                 return {
                   code: transpiled.outputText,
                   map: transpiled.sourceMapText
