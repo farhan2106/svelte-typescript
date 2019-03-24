@@ -1,6 +1,6 @@
-# Svelte + Typescript + Storybook + Jest + Webpack
+# Svelte + Typescript + Storybook + Webpack
 
-This is a __Svelte + Typescript + Storybook + Jest + Webpack__ boiletplate project.
+This is a __Svelte + Typescript + Storybook + Webpack__ boiletplate project.
 
 * Can I import typescript file in .svelte file? - **Yes**
 * Can I write typescript in .svelte file? - **Yes & No** - Currently, fails when you run storybook but webpack builds successfully.

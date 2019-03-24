@@ -7,7 +7,6 @@
 <style>
 </style>
 
-<!-- TODO include files -->
 <script>
 import WelcomePageModel from './WelcomePageModel'
 import ThankYouPage from './../ThankYouPage/ThankYouPage.svelte'
