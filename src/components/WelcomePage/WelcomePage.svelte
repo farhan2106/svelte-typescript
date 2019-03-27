@@ -18,5 +18,5 @@ export default {
   data() {
     return WelcomePageModel.data
   }
-}
+} as {}
 </script>

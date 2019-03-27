@@ -1,12 +1,10 @@
-import * as fs from 'fs';
-import ts from 'typescript'
 import svelte from 'rollup-plugin-svelte';
 import typescript from 'rollup-plugin-typescript'
 import postcss from 'rollup-plugin-postcss'
-import tsConfig from './tsconfig.json'
 import { terser } from 'rollup-plugin-terser'
 import html from 'rollup-plugin-bundle-html'
 import packageJson from './package.json'
+const svelteBuild = require('./configs/svelte-build')
 
 module.exports = {
   input: './src/main.ts',
@@ -22,24 +20,7 @@ module.exports = {
     }),
     typescript(),
     svelte({
-      preprocess: {
-        script: ({ content, attributes, filename }) => {
-          let transpiled
-          if (attributes.src) {
-            const filePath = [ 
-              ...filename.split('/').slice(0, (filename.match(/\//g) || []).length),
-              attributes.src
-            ].join('/')
-            transpiled = ts.transpileModule(fs.readFileSync(filePath).toString(), tsConfig)
-          } else {
-            transpiled = ts.transpileModule(content, tsConfig)
-          }
-          return {
-            code: transpiled.outputText,
-            map: transpiled.sourceMapText
-          };
-        }
-      },
+      preprocess: svelteBuild.preprocess,
 
       emitCss: false,
 

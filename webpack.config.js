@@ -1,8 +1,6 @@
-const fs = require('fs')
-const ts = require('typescript')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const tsConfig = require('./tsconfig.json')
+const svelteBuild = require('./configs/svelte-build')
 
 const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
@@ -31,24 +29,7 @@ module.exports = {
             nestedTransitions: true,
             emitCss: true,
             hotReload: true,
-            preprocess: {
-              script: ({ content, attributes, filename }) => {
-                let transpiled
-                if (attributes.src) {
-                  const filePath = [ 
-                    ...filename.split('/').slice(0, (filename.match(/\//g) || []).length),
-                    attributes.src
-                  ].join('/')
-                  transpiled = ts.transpileModule(fs.readFileSync(filePath).toString(), tsConfig)
-                } else {
-                  transpiled = ts.transpileModule(content, tsConfig)
-                }
-                return {
-                  code: transpiled.outputText,
-                  map: transpiled.sourceMapText
-                };
-              }
-            }
+            preprocess: svelteBuild.preprocess
           }
         }
       },

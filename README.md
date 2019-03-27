@@ -3,7 +3,7 @@
 This is a __Svelte + Typescript + Storybook + Webpack__ boiletplate project.
 
 * Can I import typescript file in .svelte file? - **Yes**
-* Can I write typescript in .svelte file? - **Yes & No** - Currently, fails when you run storybook but webpack builds successfully.
+* Can I write typescript in .svelte file? - **Yes**
 
 ## How to do typescript with svelte?
 
