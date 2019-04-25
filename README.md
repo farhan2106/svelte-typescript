@@ -3,7 +3,7 @@
 This is a __Svelte + Typescript + Storybook + (Webpack / Rollup)__ boiletplate project.
 
 * Can I import typescript file in .svelte file? - **Yes**
-* Can I write typescript in .svelte file? - **Yes, but typescript syntax is not highlighted**
+* Can I write typescript in .svelte file? - **Yes**
 
 ## How to do typescript with svelte?
 
