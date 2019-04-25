@@ -1,7 +1,3 @@
-import ThankYouPageModel from './ThankYouPageModel'
+export const date = ''
 
-export default {
-  data() {
-    return ThankYouPageModel.data
-  }
-}
+console.log(date)

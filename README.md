@@ -10,6 +10,18 @@ This is a __Svelte + Typescript + Storybook + (Webpack / Rollup)__ boiletplate p
 1. Write typescript in svelte component
 
 ```
+<h1>
+  My App
+  <WelcomePage name={name}></WelcomePage>
+</h1>
+
+<style>
+h1 {
+  color: purple;
+}
+</style>
+
+<script>
 import ThankYouPageModel from './ThankYouPageModel'
 
 export default {
@@ -17,6 +29,7 @@ export default {
     return ThankYouPageModel.data
   }
 } as { data: Function }
+</script>
 ```
 
 2. Import ts file in svelte component

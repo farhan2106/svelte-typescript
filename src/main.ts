@@ -5,7 +5,7 @@ type AppWindow<T extends {}> = T & Window
 
 const app = new App({
   target: document.body,
-  data: {
+  props: {
     name: 'User'
   }
 });
