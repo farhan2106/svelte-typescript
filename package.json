@@ -32,6 +32,7 @@
     "webpack-dev-server": "^3.3.1"
   },
   "scripts": {
+    "upgrade": "npm outdated && npm update",
     "build:rollup": "cross-env NODE_ENV=production rollup -c rollup.config.js",
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "webpack-dev-server --content-base public",
