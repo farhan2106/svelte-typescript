@@ -22,13 +22,10 @@ h1 {
 </style>
 
 <script>
-import ThankYouPageModel from './ThankYouPageModel'
+import WelcomePage from './components/WelcomePage/WelcomePage.svelte'
 
-export default {
-  data() {
-    return ThankYouPageModel.data
-  }
-} as { data: Function }
+WelcomePage
+export const name: string = ''
 </script>
 ```
 

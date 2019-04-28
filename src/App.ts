@@ -1,4 +1,4 @@
 import WelcomePage from './components/WelcomePage/WelcomePage.svelte'
 
-export const name = ''
-console.log(name, WelcomePage)
+WelcomePage
+export const name: string = ''
