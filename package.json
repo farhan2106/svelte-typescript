@@ -2,34 +2,34 @@
   "name": "svelte-typescript",
   "version": "1.0.0",
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@storybook/addon-actions": "^5.0.10",
-    "@storybook/addon-knobs": "^5.0.10",
-    "@storybook/addon-notes": "^5.0.10",
-    "@storybook/addons": "^5.0.10",
-    "@storybook/svelte": "^5.0.10",
+    "@babel/core": "^7.4.5",
+    "@storybook/addon-actions": "^5.0.11",
+    "@storybook/addon-knobs": "^5.0.11",
+    "@storybook/addon-notes": "^5.0.11",
+    "@storybook/addons": "^5.0.11",
+    "@storybook/svelte": "^5.0.11",
     "awesome-typescript-loader": "^5.2.1",
-    "babel-loader": "^8.0.5",
+    "babel-loader": "^8.0.6",
     "cross-env": "^5.1.5",
     "css-loader": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.6.0",
-    "rollup": "^1.10.1",
-    "rollup-plugin-bundle-html": "^0.1.5",
+    "mini-css-extract-plugin": "^0.7.0",
+    "rollup": "^1.13.1",
+    "rollup-plugin-bundle-html": "^0.2.1",
     "rollup-plugin-html-template": "^1.0.3",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-svelte": "^5.0.3",
-    "rollup-plugin-terser": "^4.0.4",
+    "rollup-plugin-terser": "^5.0.0",
     "rollup-plugin-typescript": "^1.0.1",
-    "serve": "^11.0.0",
+    "serve": "^11.0.1",
     "style-loader": "^0.23.1",
-    "svelte": "^3.0.1",
-    "svelte-loader": "2.13.3",
+    "svelte": "^3.4.4",
+    "svelte-loader": "2.13.4",
     "tslib": "^1.9.3",
-    "typescript": "^3.4.5",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.1",
-    "webpack-dev-server": "^3.3.1"
+    "typescript": "^3.5.1",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.5.1"
   },
   "scripts": {
     "upgrade": "npm outdated && npm update",
@@ -39,6 +39,6 @@
     "storybook": "start-storybook --ci"
   },
   "dependencies": {
-    "core-js": "^3.0.1"
+    "core-js": "^3.1.3"
   }
 }

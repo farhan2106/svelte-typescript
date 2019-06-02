@@ -2,6 +2,8 @@
 
 This is a __Svelte + Typescript + Storybook + (Webpack / Rollup)__ boiletplate project.
 
+** Rollup support for svelte 3 is not yet ready.
+
 * Can I import typescript file in .svelte file? - **Yes**
 * Can I write typescript in .svelte file? - **Yes**
 
