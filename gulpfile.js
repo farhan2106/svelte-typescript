@@ -11,6 +11,10 @@ const webpack = require('webpack')
 
 const tsProject = ts.createProject('tsconfig.json')
 
+function copyTask () {
+  return src(['src/assets/**/**']).pipe(dest('build/assets'));
+}
+
 function emptyDirs () {
   return src(['build', 'public'], { read: false, allowEmpty: true })
           .pipe(clean())
@@ -77,11 +81,11 @@ function serve (cb) {
   cb()
 }
 
-const buildTasks = series(scriptSvelte, styleSvelte, webpackTask)
+const buildTasks = series(copyTask, scriptSvelte, styleSvelte, webpackTask)
 
 const developmentTasks = series(
   emptyDirs, 
-  series(scriptSvelte, styleSvelte, webpackTask, serve)
+  series(copyTask, scriptSvelte, styleSvelte, webpackTask, serve)
 )
 
 process.env.NODE_ENV !== 'production' && watch(['src/**/*.*'], developmentTasks)
