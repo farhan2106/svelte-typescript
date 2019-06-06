@@ -1,16 +1,16 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const svelteBuild = require('./configs/svelte-build')
+const CopyPlugin = require('copy-webpack-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
 
 module.exports = {
   entry: {
-    bundle: ['./src/main.ts']
+    bundle: ['./build/main.js']
   },
   resolve: {
-    extensions: ['.js', '.html', '.svelte', '.ts']
+    extensions: ['.js', '.html', '.svelte']
   },
   output: {
     path: __dirname + '/public',
@@ -26,8 +26,7 @@ module.exports = {
           loader: 'svelte-loader',
           options: {
             emitCss: true,
-            hotReload: true,
-            preprocess: svelteBuild.preprocess
+            hotReload: true
           }
         }
       },
@@ -41,10 +40,6 @@ module.exports = {
           prod ? MiniCssExtractPlugin.loader : 'style-loader',
           'css-loader'
         ]
-      },
-      {
-        test: /\.ts?$/,
-        loader: 'awesome-typescript-loader'
       }
     ]
   },
@@ -53,7 +48,10 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css'
     }),
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin(),
+    new CopyPlugin([
+      { from: 'src/assets', to: '../build/assets' }
+    ]),
   ],
   devtool: prod ? false: 'source-map'
 };

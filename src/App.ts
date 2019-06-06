@@ -1,4 +1,3 @@
-import WelcomePage from './components/WelcomePage/WelcomePage.svelte'
+import WelcomePage from './components/WelcomePage/WelcomePage.svelte';WelcomePage;
 
-WelcomePage
 export const name: string = ''
