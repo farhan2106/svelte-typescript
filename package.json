@@ -16,7 +16,6 @@
     "fs-extra": "^8.0.1",
     "gulp": "^4.0.1",
     "gulp-clean": "^0.4.0",
-    "gulp-live-server": "0.0.31",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-tap": "^1.0.1",
@@ -31,11 +30,12 @@
     "tslib": "^1.9.3",
     "typescript": "^3.5.1",
     "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2"
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.7.1"
   },
   "scripts": {
     "upgrade": "npm outdated && npm update",
-    "dev": "gulp",
+    "dev": "cross-env PORT=8080 gulp",
     "start": "cross-env NODE_ENV=production gulp && node build/main.js",
     "storybook": "start-storybook --ci"
   },

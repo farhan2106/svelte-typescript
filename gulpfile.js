@@ -1,13 +1,14 @@
+const path = require('path')
 const fs = require('fs-extra')
 const { dest, src, watch, series } = require('gulp')
 const ts = require('gulp-typescript')
-const gls = require('gulp-live-server')
 const tap = require('gulp-tap')
 const clean = require('gulp-clean')
 const sass = require('gulp-sass')
 const postcss = require("gulp-postcss")
 const atImport = require("postcss-import")
 const webpack = require('webpack')
+const WebpackDevServer = require('webpack-dev-server')
 
 const tsProject = ts.createProject('tsconfig.json')
 
@@ -64,29 +65,26 @@ function styleSvelte () {
     .pipe(dest('build', { overwrite: true, append: true }))
 }
 
-function webpackTask (cb) {
-  const compiler = webpack(require('./webpack.config'))
-  compiler.run(cb())
-}
+function webpackTask () {
+  const compiler = webpack(require('./webpack.config'));
 
-let server = undefined
-function serve (cb) {
-  if (!server) {
-    server = gls.static('public', 8080)
-    server.start()
-  } else {
-    server.stop()
-    server.start()
-  }
-  cb()
+  new WebpackDevServer(compiler, {
+    contentBase: path.join(__dirname, 'public'),
+    compress: true
+  }).listen(process.env.PORT, "localhost", err => {
+    if (err) throw new Error("webpack-dev-server", err)
+
+    // continue?
+    // callback();
+  });
 }
 
 const buildTasks = series(copyTask, scriptSvelte, styleSvelte, webpackTask)
 
 const developmentTasks = series(
   emptyDirs, 
-  series(copyTask, scriptSvelte, styleSvelte, webpackTask, serve)
+  series(copyTask, scriptSvelte, styleSvelte, webpackTask)
 )
 
-process.env.NODE_ENV !== 'production' && watch(['src/**/*.*'], developmentTasks)
+process.env.NODE_ENV !== 'production' && watch(['src/**/*.*'], series(copyTask, scriptSvelte, styleSvelte))
 exports.default = process.env.NODE_ENV !== 'production' ? developmentTasks : buildTasks

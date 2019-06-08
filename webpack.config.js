@@ -25,7 +25,7 @@ module.exports = {
           loader: 'svelte-loader',
           options: {
             emitCss: true,
-            hotReload: true
+            hotReload: true /* not supported yet in svelte 3 */
           }
         }
       },
