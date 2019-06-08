@@ -3,13 +3,12 @@ import App from './App.svelte';
 
 type AppWindow<T extends {}> = T & Window
 
-const app = new App({
-  target: document.body,
-  props: {
-    name: 'User'
-  }
-});
+let componentName = 'MyComponent';
+if (document.currentScript && 
+  document.currentScript.getAttribute('component-name') !== null && 
+  document.currentScript.getAttribute('component-name') !== '') {
+  componentName = document.currentScript.getAttribute('component-name') as string
+}
 
-(window as AppWindow<{ app: any }>).app = app;
-
-export default app;
+(window as AppWindow<{ [key: string]: any }>)[componentName] = App;
+export default App

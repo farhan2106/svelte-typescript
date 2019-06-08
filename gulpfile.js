@@ -67,6 +67,7 @@ function styleSvelte () {
 
 function webpackTask () {
   const compiler = webpack(require('./webpack.config'));
+  // compiler.run(cb())
 
   new WebpackDevServer(compiler, {
     contentBase: path.join(__dirname, 'public'),
@@ -75,7 +76,7 @@ function webpackTask () {
     if (err) throw new Error("webpack-dev-server", err)
 
     // continue?
-    // callback();
+    // cb();
   });
 }
 

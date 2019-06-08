@@ -47,7 +47,10 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css'
     }),
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin({
+      inject: false,
+      template: 'src/index.tmpl'
+    })
   ],
   devtool: prod ? false: 'source-map'
 };
