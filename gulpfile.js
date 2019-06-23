@@ -71,7 +71,8 @@ function webpackTask () {
 
   new WebpackDevServer(compiler, {
     contentBase: path.join(__dirname, 'public'),
-    compress: true
+    compress: true,
+    hot: true
   }).listen(process.env.PORT, "localhost", err => {
     if (err) throw new Error("webpack-dev-server", err)
 

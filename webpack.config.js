@@ -9,7 +9,7 @@ module.exports = {
     bundle: ['./build/main.js']
   },
   resolve: {
-    extensions: ['.js', '.html', '.svelte', '.css']
+    extensions: ['.js', '.html', '.svelte', '.css', '.mjs']
   },
   output: {
     path: __dirname + '/public',
@@ -25,7 +25,13 @@ module.exports = {
           loader: 'svelte-loader',
           options: {
             emitCss: true,
-            hotReload: true /* not supported yet in svelte 3 */
+            hotReload: true,
+            hotOptions: {
+              // will display compile error in the client, avoiding page
+              // reload on error
+              optimistic: true,
+            },
+            dev: !prod
           }
         }
       },
