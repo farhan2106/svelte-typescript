@@ -1,5 +1,3 @@
-const svelteBuild = require('./../configs/svelte-build')
-
 module.exports = ({ config, mode }) => {
   // remove original storybook webpack rules for svelte
   config.module.rules = config.module.rules.filter(r => {
@@ -22,8 +20,7 @@ module.exports = ({ config, mode }) => {
       loader: 'svelte-loader',
       options: {
         emitCss: true,
-        hotReload: true,
-        preprocess: svelteBuild.preprocess
+        hotReload: true
       }
     }
   })
