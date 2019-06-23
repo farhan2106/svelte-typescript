@@ -25,7 +25,7 @@ module.exports = {
           loader: 'svelte-loader',
           options: {
             emitCss: true,
-            hotReload: true,
+            hotReload: true, // Using a forked version of svelte-loader "github:rixo/svelte-loader#hmr"
             hotOptions: {
               // will display compile error in the client, avoiding page
               // reload on error
