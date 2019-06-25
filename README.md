@@ -9,5 +9,8 @@ Then webpack, using `svelte-loader` will read the `build` files, and output into
 
 ## How to do typescript with svelte?
 
-Create a `.svelte` file and a corresponding `.ts` file for the svelte component. During build time, the `.ts` will be combined with the `.svelte` file to become a svelte component. `.svelte` & `.ts` must have the same filename.
+1. Create a new folder inside the `components` folder.
+2. Create a `.ts`, `.scss` & `.svelte` file in that folder. I must have the same filename.
+3. `npm run dev`
+4. Profit
 
