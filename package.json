@@ -3,43 +3,58 @@
   "version": "1.0.0",
   "devDependencies": {
     "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
     "@storybook/addon-actions": "^5.1.9",
     "@storybook/addon-knobs": "^5.1.9",
     "@storybook/addon-notes": "^5.1.9",
     "@storybook/addons": "^5.1.9",
     "@storybook/svelte": "^5.1.9",
     "@types/node": "^12.0.10",
+    "@webcomponents/custom-elements": "^1.2.4",
+    "autoprefixer": "^9.6.0",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
+    "brotli-webpack-plugin": "^1.1.0",
+    "chalk": "^2.4.2",
+    "core-js": "^2.6.9",
     "cross-env": "^5.1.5",
-    "css-loader": "^2.1.1",
+    "css-loader": "^3.0.0",
+    "cssnano": "^4.1.10",
+    "esri-loader": "^2.9.2",
+    "file-loader": "^4.0.0",
     "fs-extra": "^8.0.1",
     "gulp": "^4.0.1",
+    "gulp-cached": "^1.1.1",
     "gulp-clean": "^0.4.0",
-    "gulp-postcss": "^8.0.0",
-    "gulp-sass": "^4.0.2",
     "gulp-tap": "^1.0.1",
     "gulp-typescript": "^5.0.1",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.7.0",
+    "node-sass": "^4.12.0",
+    "postcss": "^7.0.17",
     "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.6.0",
+    "sass-loader": "^7.1.0",
     "serve": "^11.0.1",
+    "standard": "^12.0.1",
     "style-loader": "^0.23.1",
     "svelte": "^3.5.3",
     "svelte-loader": "github:rixo/svelte-loader#hmr",
     "tslib": "^1.9.3",
     "typescript": "^3.5.2",
-    "webpack": "^4.35.0",
+    "webpack": "^4.35.2",
     "webpack-cli": "^3.3.4",
-    "webpack-dev-server": "^3.7.1"
+    "webpack-dev-server": "^3.7.1",
+    "webpack-merge": "^4.2.1"
   },
   "scripts": {
     "upgrade": "npm outdated && npm update",
     "dev": "cross-env PORT=8080 gulp",
-    "start": "cross-env NODE_ENV=production gulp && node build/main.js",
+    "build": "cross-env NODE_ENV=production gulp",
     "storybook": "start-storybook --ci"
   },
-  "dependencies": {
-    "core-js": "^3.1.4"
-  }
+  "browserslist": [
+    "ie >= 11"
+  ]
 }
