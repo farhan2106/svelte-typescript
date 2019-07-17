@@ -8,6 +8,50 @@ const mode = process.env.NODE_ENV || 'development'
 const prod = mode === 'production'
 
 // https://webpack.js.org/plugins/compression-webpack-plugin/
+// https://webpack.js.org/guides/code-splitting/
+
+const svelteLoaders = [{
+  loader: 'svelte-loader',
+  options: {
+    preprocess: {
+      style: async (input) => {
+        const postCssOpts = {
+          from: input.filename.replace(__dirname, '').replace('.svelte', '.css'),
+          to: input.filename.replace(__dirname, '').replace('/build/', '/src/')
+        }
+        let result = sass.renderSync({
+          data: input.content
+        })
+        result = await postcss(require('./postcss.config')).process(result.css.toString(), postCssOpts)
+        return {
+          code: result.css.toString()
+        }
+      }
+    },
+    emitCss: true,
+    hotReload: false,
+    hotOptions: {
+      // will display compile error in the client, avoiding page reload on error
+      optimistic: false
+    },
+    dev: !prod
+  }
+}]
+
+if (prod) {
+  svelteLoaders.unshift({
+    loader: 'babel-loader',
+    options: {
+      presets: [
+        ['@babel/preset-env', {
+          useBuiltIns: 'usage',
+          corejs: 2
+        }]
+      ],
+      sourceType: 'unambiguous'
+    }
+  })
+}
 
 module.exports = {
   entry: {
@@ -37,33 +81,7 @@ module.exports = {
       {
         test: /\.svelte$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'svelte-loader',
-          options: {
-            preprocess: {
-              style: async (input) => {
-                const postCssOpts = {
-                  from: input.filename.replace(__dirname, '').replace('.svelte', '.css'),
-                  to: input.filename.replace(__dirname, '').replace('/build/', '/src/')
-                }
-                let result = sass.renderSync({
-                  data: input.content
-                })
-                result = await postcss(require('./postcss.config')).process(result.css.toString(), postCssOpts)
-                return {
-                  code: result.css.toString()
-                }
-              }
-            },
-            emitCss: true,
-            hotReload: true, // Using a forked version of svelte-loader "github:rixo/svelte-loader#hmr"
-            hotOptions: {
-              // will display compile error in the client, avoiding page reload on error
-              optimistic: false
-            },
-            dev: !prod
-          }
-        }
+        use: svelteLoaders
       },
       {
         test: /\.(scss|sass)$/,
@@ -91,7 +109,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: 'Flood',
-      inject: false,
+      inject: 'body',
       template: 'index.tmpl'
     })
   ],

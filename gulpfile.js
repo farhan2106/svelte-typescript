@@ -84,5 +84,8 @@ const developmentTasks = series(
   series(copyTask, combineSvelte, webpackTask)
 )
 
-process.env.NODE_ENV !== 'production' && watch(['src/**/*.*'], series(copyTask, combineSvelte))
+if (process.env.NODE_ENV !== 'production') {
+  watch(['src/assets/**/**'], series(copyTask))
+  watch(['src/**/*.ts', 'src/**/*.scss', 'src/**/*.svelte'], combineSvelte)
+}
 exports.default = process.env.NODE_ENV !== 'production' ? developmentTasks : buildTasks

@@ -1,14 +1,14 @@
 const merge = require('webpack-merge')
 const BrotliPlugin = require('brotli-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = merge(require('./webpack.config'), {
   entry: {
-    ie11: '@webcomponents/custom-elements'
+    '11': '@webcomponents/custom-elements'
   },
   module: {
     rules: [
       {
-        // test: /(\.m?js?$)|(\.svelte$)/,
         test: /(\.m?js?$)/,
         exclude: /\bcore-js\b/,
         use: {
@@ -26,17 +26,18 @@ module.exports = merge(require('./webpack.config'), {
       }
     ]
   },
-  // optimization: {
-  //   splitChunks: {
-  //     chunks: "all",
-  //   },
-  // }, 
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    }
+  },
   plugins: [
     new BrotliPlugin({
       asset: '[path].br[query]',
       test: /\.(js|css|html|svg)$/,
       threshold: 10240,
       minRatio: 0.8
-    })
+    }),
+    new CompressionPlugin()
   ]
 })
