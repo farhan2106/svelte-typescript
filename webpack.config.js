@@ -44,8 +44,8 @@ if (prod) {
     options: {
       presets: [
         ['@babel/preset-env', {
-          useBuiltIns: 'usage',
-          corejs: 2
+          useBuiltIns: 'entry',
+          corejs: 3
         }]
       ],
       sourceType: 'unambiguous'
@@ -55,7 +55,11 @@ if (prod) {
 
 module.exports = {
   entry: {
-    bundle: './build/main.js'
+    bundle: [
+      "core-js",
+      "regenerator-runtime/runtime",
+      './build/main.js'
+    ]
   },
   resolve: {
     extensions: ['.js', '.html', '.svelte', '.css', '.mjs']
@@ -110,8 +114,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Flood',
       inject: 'body',
-      template: 'index.tmpl'
-    })
+      template: 'index.tmpl',
+    }),
   ],
-  devtool: prod ? false : 'source-map'
+  devtool: 'source-map'
 }

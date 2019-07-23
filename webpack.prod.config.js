@@ -16,8 +16,8 @@ module.exports = merge(require('./webpack.config'), {
           options: {
             presets: [
               ['@babel/preset-env', {
-                useBuiltIns: 'usage',
-                corejs: 2
+                useBuiltIns: 'entry',
+                corejs: 3
               }]
             ],
             sourceType: 'unambiguous'
