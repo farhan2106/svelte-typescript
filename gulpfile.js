@@ -22,9 +22,9 @@ function emptyDirs () {
 }
 
 function combineSvelte () {
-  return src('src/**/*.ts')
+  return tsProject.src() // src('src/**/*.ts')
     .pipe(tsProject())
-    .pipe(tap(function (file) {
+    .pipe(tap(file => {
       const svelteHtmlPath = file.path.replace('build', 'src').replace('.js', '.svelte')
       const svelteSassPath = file.path.replace('build', 'src').replace('.js', '.scss')
       fs.exists(svelteHtmlPath, (exist) => {
