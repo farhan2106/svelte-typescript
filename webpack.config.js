@@ -29,7 +29,7 @@ const svelteLoaders = [{
       }
     },
     emitCss: true,
-    hotReload: false,
+    hotReload: false, // https://github.com/sveltejs/svelte/issues/2377
     hotOptions: {
       // will display compile error in the client, avoiding page reload on error
       optimistic: false
