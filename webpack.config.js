@@ -10,33 +10,7 @@ const prod = mode === 'production'
 // https://webpack.js.org/plugins/compression-webpack-plugin/
 // https://webpack.js.org/guides/code-splitting/
 
-const svelteLoaders = [{
-  loader: 'svelte-loader',
-  options: {
-    preprocess: {
-      style: async (input) => {
-        const postCssOpts = {
-          from: input.filename.replace(__dirname, '').replace('.svelte', '.css'),
-          to: input.filename.replace(__dirname, '').replace('/build/', '/src/')
-        }
-        let result = sass.renderSync({
-          data: input.content
-        })
-        result = await postcss(require('./postcss.config')).process(result.css.toString(), postCssOpts)
-        return {
-          code: result.css.toString()
-        }
-      }
-    },
-    emitCss: true,
-    hotReload: false, // https://github.com/sveltejs/svelte/issues/2377 || https://github.com/sveltejs/svelte/pull/3148
-    hotOptions: {
-      // will display compile error in the client, avoiding page reload on error
-      optimistic: false
-    },
-    dev: !prod
-  }
-}]
+const svelteLoaders = [require('./svelte-loader-config')(!prod)]
 
 if (prod) {
   svelteLoaders.unshift({

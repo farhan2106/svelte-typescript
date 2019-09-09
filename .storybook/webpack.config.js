@@ -5,24 +5,9 @@ module.exports = ({ config, mode }) => {
   })
 
   config.module.rules.push({
-    test: /\.(ts|tsx)$/,
-    use: [
-      {
-        loader: require.resolve('awesome-typescript-loader'),
-      }
-    ],
-  });
-
-  config.module.rules.push({
     test: /\.svelte$/,
     exclude: /node_modules/,
-    use: {
-      loader: 'svelte-loader',
-      options: {
-        emitCss: true,
-        hotReload: true
-      }
-    }
+    use: require('./../svelte-loader-config')(mode === 'DEVELOPMENT')
   })
 
   config.resolve.extensions.push('.ts', '.tsx');
