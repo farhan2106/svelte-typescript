@@ -86,7 +86,7 @@ module.exports = {
       filename: '[name].css'
     }),
     new HtmlWebpackPlugin({
-      title: 'Flood',
+      title: 'Svelte Typescript',
       inject: 'body',
       template: 'index.tmpl',
     }),
