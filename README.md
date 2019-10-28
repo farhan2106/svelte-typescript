@@ -1,3 +1,5 @@
+This repo was developed when Svelte 3 came out. Since then better svelte-typescript has been developed, such as this [one](https://www.npmjs.com/package/svelte-preprocess)
+
 # Svelte + Typescript + Storybook + Webpack
 
 This is a __Svelte + Typescript + Storybook + Webpack__ boiletplate project.
